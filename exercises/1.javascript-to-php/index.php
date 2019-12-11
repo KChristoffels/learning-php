@@ -17,9 +17,6 @@
     foreach ($strings as $key => $value) {
     $stringCounter[$key] = $value;
     } 
-    
-    
-    
 
     function debug_to_console($data) {
         $output = $data;
@@ -29,30 +26,49 @@
         echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
     }
     
-
-    
     function createList(&$stringCounter, &$strings) {        
        
         echo '<ul>';        
         while(count($stringCounter) > 0) {
             $selectAName = $strings[generateNumber(count($strings)-1)];
-            debug_to_console($selectAName);
+            
             
             if (in_array($selectAName, $stringCounter)) {
                 $index = array_search($selectAName, $stringCounter);
                 
                 /*unset($stringCounter[$index]);*/
                 array_splice($stringCounter, $index, 1);
-                debug_to_console(count($stringCounter));
+               
             }    
             
             echo '<li>';
             echo $selectAName;
-            echo '</li>';
-            
+            echo '</li>';            
                     
         }
         echo '</ul>';
+    }
+
+    function colorText ($colorThis) {
+        $textPieces = [];
+        if (strpos($colorThis, " ") !== false) {
+            $textPieces = explode(" ", $colorThis);
+            debug_to_console($textPieces);
+        } else {
+            $textPieces = [$colorThis];
+        }
+        
+        for ($i = 0; $i < count($textPieces); $i++) {
+            $textPieces[$i] = explode("", $textPieces[$i]);
+            
+            for ($ii = 0; $ii < count($textPieces[$i])/2; $ii++) {
+                $x = generateNumber(count($textPieces[$i])-1) + 1;
+                $textPieces[$i][$x] = strtoupper(randomColor("{$textPieces[$i][$x]}"));
+            }
+            $textPieces[$i] = implode("", $textPieces[$i]); 
+        }
+        $textPieces = implode(" - ", $textPieces);
+        echo "<p> {$textPieces} </p>";
     }
 
     
@@ -64,7 +80,7 @@
         "https://images7.alphacoders.com/528/528418.jpg",
         "https://wallpaperaccess.com/full/300068.jpg",
         "https://www.hdwallpaper.nu/wp-content/uploads/2016/02/golden-gate_wallpaper_030.jpg"
-    );
+    ); 
 
     // Utility functions
     // =================
@@ -79,7 +95,6 @@
         $b = generateNumber(255);
         return "<span style ='color:rgb({$r},{$g},{$b});'>$char</span>";
     }
-
     
     $currentBackground = $pictures[generateNumber(4)];    
 
@@ -146,7 +161,7 @@
 
         <div class="row">
             <div class="col-12">
-                <div id="username-generator" class="my-4 p-4 bg-white shadow-sm border"></div>
+                <div id="username-generator" class="my-4 p-4 bg-white shadow-sm border"><?php echo (colorText("hello this is mr worldwide"))?></div>
             </div>
         </div>
     </div>
@@ -156,16 +171,16 @@
     // Executables
     // ===========
     /*changeImage(document.getElementById("header"));*/
-    loopWhile(strings);
+    /*loopWhile(strings);*/
     createUsername("Rafael Lambelin Selene Nijst");
     // ====================================================================
     // ========================== Functions ===============================
     // ====================================================================
     // Exercise 1: Changing attributes
     // ===============================
-    function changeImage(img) {
+    /*function changeImage(img) {
         img.style.backgroundImage = "url('"+pictures[getRandomNumber(5)]+"')";
-    }
+    }*/
     // Exercise 2: Loops and randoms
     // =============================
     /*function loopWhile(arr) {
