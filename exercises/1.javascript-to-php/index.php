@@ -1,5 +1,6 @@
 
-<?php
+ <?php
+
     $strings = array("Kirito",
     "Erza",
     "Akatsuki",
@@ -10,6 +11,52 @@
     "Glenn Radars",
     "Momonga-Sama",
     );
+
+    $stringCounter = [];
+
+    foreach ($strings as $key => $value) {
+    $stringCounter[$key] = $value;
+    } 
+    
+    
+    
+
+    function debug_to_console($data) {
+        $output = $data;
+        if (is_array($output))
+            $output = implode(',', $output);
+    
+        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+    }
+    
+
+    
+    function createList(&$stringCounter, &$strings) {        
+       
+        echo '<ul>';        
+        while(count($stringCounter) > 0) {
+            $selectAName = $strings[generateNumber(count($strings)-1)];
+            debug_to_console($selectAName);
+            
+            if (in_array($selectAName, $stringCounter)) {
+                $index = array_search($selectAName, $stringCounter);
+                
+                /*unset($stringCounter[$index]);*/
+                array_splice($stringCounter, $index, 1);
+                debug_to_console(count($stringCounter));
+            }    
+            
+            echo '<li>';
+            echo $selectAName;
+            echo '</li>';
+            
+                    
+        }
+        echo '</ul>';
+    }
+
+    
+   
 
     $pictures = array(
         "https://www.pixelstalk.net/wp-content/uploads/2016/08/HD-PC-Wallpaper-2016.jpg",
@@ -32,6 +79,9 @@
         $b = generateNumber(255);
         return "<span style ='color:rgb({$r},{$g},{$b});'>$char</span>";
     }
+
+    
+    $currentBackground = $pictures[generateNumber(4)];    
 
     $random = randomColor("A");
 ?>
@@ -68,14 +118,13 @@
     </script>
 </head>
 <body class="bg-light">
-<header id="header">
-    <div class="overlay"> <?php echo "test"?></div>
+<header id="header" style="background-image:url(<?php echo $currentBackground?>)">
+    <div class="overlay"> 
     <div class="overlay-content">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1>Welcome to the Javascript - PHP exercise</h1>
-                    <p><?php echo ($random)?></p>
+                    <h1>Welcome to the Javascript - PHP exercise</h1>                    
                     
                     <p>Read the code of this page, understand it, then convert it to the same functionality in PHP!</p>
                 </div>
@@ -87,7 +136,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div id="loop-while" class="my-4 p-4 bg-white shadow-sm border"></div>
+                <div id="loop-while" class="my-4 p-4 bg-white shadow-sm border"><?php echo '<h2>Exercise 1: Loops and stuff</h2>';
+                echo (createList($stringCounter, $strings));
+                ?>
+                
+                </div>
             </div>
         </div>
 
@@ -102,7 +155,7 @@
 <script>
     // Executables
     // ===========
-    changeImage(document.getElementById("header"));
+    /*changeImage(document.getElementById("header"));*/
     loopWhile(strings);
     createUsername("Rafael Lambelin Selene Nijst");
     // ====================================================================
@@ -115,7 +168,7 @@
     }
     // Exercise 2: Loops and randoms
     // =============================
-    function loopWhile(arr) {
+    /*function loopWhile(arr) {
         let arr_tracker = arr.slice(0, arr.length-1);        
         let list = document.createElement("ul");
         while(arr_tracker.length > 0) {
@@ -129,7 +182,7 @@
         let holder = document.getElementById("loop-while");
         holder.innerHTML = "<h2>Exercise 1: Loops and stuff</h2>";
         holder.appendChild(list);
-    }
+    }*/
     // Exercise 3: String manipulation - cookies and printing
     // ======================================================
     function createUsername(name) {
