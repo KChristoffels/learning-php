@@ -1,3 +1,41 @@
+
+<?php
+    $strings = array("Kirito",
+    "Erza",
+    "Akatsuki",
+    "Shiro",
+    "Leo",
+    "Rundel-Haus-Code",
+    "Ken Kaneki",
+    "Glenn Radars",
+    "Momonga-Sama",
+    );
+
+    $pictures = array(
+        "https://www.pixelstalk.net/wp-content/uploads/2016/08/HD-PC-Wallpaper-2016.jpg",
+        "https://wallpaperaccess.com/full/190815.jpg",
+        "https://images7.alphacoders.com/528/528418.jpg",
+        "https://wallpaperaccess.com/full/300068.jpg",
+        "https://www.hdwallpaper.nu/wp-content/uploads/2016/02/golden-gate_wallpaper_030.jpg"
+    );
+
+    // Utility functions
+    // =================
+    
+    function generateNumber($feedme) {
+        return rand(0, $feedme);
+    }
+
+    function randomColor($char) {
+        $r = generateNumber(255);
+        $g = generateNumber(255);
+        $b = generateNumber(255);
+        return "<span style ='color:rgb({$r},{$g},{$b});'>$char</span>";
+    }
+
+    $random = randomColor("A");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +69,14 @@
 </head>
 <body class="bg-light">
 <header id="header">
-    <div class="overlay"></div>
+    <div class="overlay"> <?php echo "test"?></div>
     <div class="overlay-content">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
                     <h1>Welcome to the Javascript - PHP exercise</h1>
+                    <p><?php echo ($random)?></p>
+                    
                     <p>Read the code of this page, understand it, then convert it to the same functionality in PHP!</p>
                 </div>
             </div>
@@ -76,7 +116,7 @@
     // Exercise 2: Loops and randoms
     // =============================
     function loopWhile(arr) {
-        let arr_tracker = arr.slice(0, arr.length-1);
+        let arr_tracker = arr.slice(0, arr.length-1);        
         let list = document.createElement("ul");
         while(arr_tracker.length > 0) {
             let list_item = document.createElement("li");
@@ -125,5 +165,7 @@
         return "<span style='color:rgb("+r+","+g+","+b+");'>" + char + "</span>";
     }
 </script>
+  
+
 </body>
 </html>
