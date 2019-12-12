@@ -53,22 +53,38 @@
         $textPieces = [];
         if (strpos($colorThis, " ") !== false) {
             $textPieces = explode(" ", $colorThis);
-            debug_to_console($textPieces);
+            
         } else {
             $textPieces = [$colorThis];
         }
         
+        
+        $finishedProduct = colorLetters($textPieces);
+        
+        $finishedProduct = implode(" - ", $finishedProduct);
+        echo "<p> {$finishedProduct} </p>";
+    }
+
+    function colorLetters (&$textPieces) {
+        
+        
         for ($i = 0; $i < count($textPieces); $i++) {
-            $textPieces[$i] = explode("", $textPieces[$i]);
             
-            for ($ii = 0; $ii < count($textPieces[$i])/2; $ii++) {
-                $x = generateNumber(count($textPieces[$i])-1) + 1;
-                $textPieces[$i][$x] = strtoupper(randomColor("{$textPieces[$i][$x]}"));
+            $seperateLetters = str_split($textPieces[$i], 1);
+            
+            
+            for ($ii = 0; $ii < count($seperateLetters)/2; $ii++) {
+                
+                $x = generateNumber(count($seperateLetters)-1);
+                
+                
+                $seperateLetters[$x] = strtoupper(randomColor("{$seperateLetters[$x]}"));
             }
-            $textPieces[$i] = implode("", $textPieces[$i]); 
+            
+            $textPieces[$i] = implode("", $seperateLetters); 
+
         }
-        $textPieces = implode(" - ", $textPieces);
-        echo "<p> {$textPieces} </p>";
+        return $textPieces;
     }
 
     
@@ -161,7 +177,7 @@
 
         <div class="row">
             <div class="col-12">
-                <div id="username-generator" class="my-4 p-4 bg-white shadow-sm border"><?php echo (colorText("hello this is mr worldwide"))?></div>
+                <div id="username-generator" class="my-4 p-4 bg-white shadow-sm border"><?php echo colorText("hello this is mr worldwide")?></div>
             </div>
         </div>
     </div>
@@ -200,7 +216,7 @@
     }*/
     // Exercise 3: String manipulation - cookies and printing
     // ======================================================
-    function createUsername(name) {
+    /*function createUsername(name) {
         let collection;
         if (name.includes(" ")) {
             collection = name.split(" ");
@@ -231,7 +247,7 @@
             g = getRandomNumber(255),
             b = getRandomNumber(255);
         return "<span style='color:rgb("+r+","+g+","+b+");'>" + char + "</span>";
-    }
+    }*/
 </script>
   
 
