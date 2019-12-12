@@ -128,7 +128,7 @@
     <script>
         // Variable with random strings
         // ============================
-        var strings = [
+        /*var strings = [
             "Kirito",
             "Erza",
             "Akatsuki",
@@ -145,7 +145,7 @@
             "https://images7.alphacoders.com/528/528418.jpg",
             "https://wallpaperaccess.com/full/300068.jpg",
             "https://www.hdwallpaper.nu/wp-content/uploads/2016/02/golden-gate_wallpaper_030.jpg"
-        ];
+        ];*/
     </script>
 </head>
 <body class="bg-light">
@@ -188,7 +188,7 @@
     // ===========
     /*changeImage(document.getElementById("header"));*/
     /*loopWhile(strings);*/
-    createUsername("Rafael Lambelin Selene Nijst");
+    /*createUsername("Rafael Lambelin Selene Nijst");$/
     // ====================================================================
     // ========================== Functions ===============================
     // ====================================================================
